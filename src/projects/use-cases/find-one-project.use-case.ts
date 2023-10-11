@@ -2,11 +2,11 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ProjectTypeOrmRepository } from '../repositories/project-typeorm.repository';
 
 @Injectable()
-export class FindAllProjectsUseCase {
+export class FindOneProjectUseCase {
   @Inject('IProjectRepository')
   private projectRepo: ProjectTypeOrmRepository;
 
-  async execute() {
-    return await this.projectRepo.findAll();
+  async execute(id: string) {
+    return await this.projectRepo.findById(id);
   }
 }

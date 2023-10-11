@@ -1,11 +1,11 @@
 import { Project } from '../entities/project.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import { ProjectRepository } from './project.repository';
 import { Repository } from 'typeorm';
+import { IProjectRepository } from './project.repository';
 
 @Injectable()
-export class ProjectTypeOrmRepository implements ProjectRepository {
+export class ProjectTypeOrmRepository implements IProjectRepository {
   constructor(
     @InjectRepository(Project)
     private typeOrmRepo: Repository<Project>,

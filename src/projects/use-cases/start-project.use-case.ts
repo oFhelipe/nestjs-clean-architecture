@@ -5,7 +5,7 @@ import { ProjectTypeOrmRepository } from '../repositories/project-typeorm.reposi
 @Injectable()
 export class StartProjectUseCase {
   constructor(
-    @Inject('ProjectRepository')
+    @Inject('IProjectRepository')
     private projectRepo: ProjectTypeOrmRepository,
   ) {}
 

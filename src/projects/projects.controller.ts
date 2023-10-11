@@ -4,6 +4,7 @@ import { CreateProjectUseCase } from './use-cases/create-project.use-case';
 import { FindAllProjectsUseCase } from './use-cases/find-all-projects.use-case';
 import { StartProjectUseCase } from './use-cases/start-project.use-case';
 import { StartProjectDto } from './dto/start-project.dto';
+import { FindOneProjectUseCase } from './use-cases/find-one-project.use-case';
 
 @Controller('projects')
 export class ProjectsController {
@@ -16,6 +17,9 @@ export class ProjectsController {
   @Inject(StartProjectUseCase)
   private readonly startProjectUseCase: StartProjectUseCase;
 
+  @Inject(FindOneProjectUseCase)
+  private readonly findOneProjectUseCase: FindOneProjectUseCase;
+
   @Post()
   async create(@Body() createProjectDto: CreateProjectDto) {
     return await this.createProjectUseCase.execute(createProjectDto);
@@ -27,7 +31,18 @@ export class ProjectsController {
   }
 
   @Post(':id/start')
-  start(@Param('id') id: string, @Body() startProjectDto: StartProjectDto) {
-    return this.startProjectUseCase.execute(id, startProjectDto);
+  async start(
+    @Param('id') id: string,
+    @Body() startProjectDto: StartProjectDto,
+  ) {
+    return await this.startProjectUseCase.execute(id, startProjectDto);
+  }
+
+  @Get(':id')
+  async findOneById(
+    @Param('id') id: string,
+    @Body() startProjectDto: StartProjectDto,
+  ) {
+    return await this.startProjectUseCase.execute(id, startProjectDto);
   }
 }

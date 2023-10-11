@@ -5,10 +5,8 @@ import { ProjectTypeOrmRepository } from '../repositories/project-typeorm.reposi
 
 @Injectable()
 export class CreateProjectUseCase {
-  constructor(
-    @Inject('ProjectRepository')
-    private projectRepo: ProjectTypeOrmRepository,
-  ) {}
+  @Inject('IProjectRepository')
+  private projectRepo: ProjectTypeOrmRepository;
 
   async execute(input: CreateProjectDto) {
     const project = new Project(input);
